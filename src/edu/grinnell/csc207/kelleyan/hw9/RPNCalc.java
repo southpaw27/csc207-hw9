@@ -1,7 +1,9 @@
 package edu.grinnell.csc207.kelleyan.hw9;
 
+import java.io.PrintWriter;
+
 public class RPNCalc {
-    
+
     // +--------+----------------------------------------------------------
     // | Fields |
     // +--------+
@@ -10,44 +12,57 @@ public class RPNCalc {
      * An ArrayBasedStack field
      */
     ArrayBasedStack<Double> RPNStack;
-    
+
     /**
      * Size of the ArrayBasedStack field
      */
     int size;
-    
+
     // +--------------+----------------------------------------------------
     // | Constructors |
     // +--------------+
 
     /**
      * RPNCalc creates a new RPN calculator
+     * 
      * @param size
      * @throws Exception
      */
     public RPNCalc(int size) throws Exception {
 	this.size = size;
-	this.RPNStack =  new ArrayBasedStack<Double>(this.size);
+	this.RPNStack = new ArrayBasedStack<Double>(this.size);
     } // RPNCalc(int)
-    
-    
+
     // +-------------------------+-----------------------------------------
-    // |     RPNCalc Methods     |
+    // | RPNCalc Methods |
     // +-------------------------+
-    
+
     /**
      * evaluate takes a string expression of an RPN calculator entry and parses
-     * through the line, adding and popping from the stack as necessary and 
+     * through the line, adding and popping from the stack as necessary and
      * evaluating expressions as they appear.
      */
-    public Double evaluate(String str) throws Exception {
+    public boolean evaluate(String str, PrintWriter pen) throws Exception {
 	int len = str.length();
 	// iterator through string
 	int i = 0;
-	Double temp1;
-	while (i < len) {
+	while (i < len && RPNStack.size >= 0) {
 	    if (str.charAt(i) == ' ') {
 		i++;
+	    } else if (str.charAt(i) == 'p') {
+		pen.println(RPNStack.peek());
+	    } else if (str.charAt(i) == 's') {
+		ArrayBasedStackIterator<Double> it = new ArrayBasedStackIterator<Double>(RPNStack);
+		while(it.hasNext()) {
+		    pen.println(it.next());
+		}
+	    } else if (str.charAt(i) == 'c') { //needs fixing
+		for (int j = 0; j < len; j++) {
+		    RPNStack.pop();
+		} // for
+		RPNStack.size = 0;
+	    } else if (str.charAt(i) == 'q') {
+		return false;
 	    } else if (str.charAt(i) == '+') {
 		add();
 	    } else if (str.charAt(i) == '-') {
@@ -58,45 +73,32 @@ public class RPNCalc {
 		divide();
 	    } else {
 		int index = i;
-		while (str.charAt(i) != ' ' && str.charAt(i + 1) != '\n') {
+		while (i < len && str.charAt(i) != ' ' && str.charAt(i) != '\n') {
 		    i++;
 		} // while
-		String tempStr = str.substring(index, i);
-		temp1 = Double.valueOf(tempStr);
-		RPNStack.push(temp1);
-	    }
-	}
-	return (double) 0;
+		RPNStack.push(Double.valueOf(str.substring(index, i)));
+	    } // if/else
+	    i++;
+	} // while
+	return true;
     }
-    
+
     public void add() throws Exception {
-	Double temp1 = this.RPNStack.pop();
-	Double temp2 = this.RPNStack.pop();
-	temp1 = temp1 + temp2;
-	this.RPNStack.push(temp1);
+	this.RPNStack.push(this.RPNStack.pop() + this.RPNStack.pop());
     }
-    
+
     public void subtract() throws Exception {
-	Double temp1 = this.RPNStack.pop();
-	Double temp2 = this.RPNStack.pop();
-	temp1 = temp1 - temp2;
-	this.RPNStack.push(temp1);
+	this.RPNStack.push(-this.RPNStack.pop() + this.RPNStack.pop());
     }
-    
+
     public void multiply() throws Exception {
-	Double temp1 = this.RPNStack.pop();
-	Double temp2 = this.RPNStack.pop();
-	temp1 = temp1 * temp2;
-	this.RPNStack.push(temp1);
+	this.RPNStack.push(this.RPNStack.pop() * this.RPNStack.pop());
     }
-    
-    public void divide() throws Exception{
-	Double temp1 = this.RPNStack.pop();
-	Double temp2 = this.RPNStack.pop();
-	temp1 = temp1 / temp2;
-	this.RPNStack.push(temp1);
+
+    public void divide() throws Exception {
+	this.RPNStack.push((1 / this.RPNStack.pop()) * this.RPNStack.pop());
     }
-    
+
     /**
      * @param args
      */

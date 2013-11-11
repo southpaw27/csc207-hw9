@@ -12,6 +12,7 @@ public class RecurrenceRelations {
      * f6(5) = c + 2(7c + 8) = 15c + 16
      * 
      * f6(n) = 2^n + c(2^n - 1)
+     * o( 2^(n+1))
      * 
      */
     
@@ -39,7 +40,7 @@ public class RecurrenceRelations {
      * f5(n) = c * n/2 - c + n/2
      * f5(n) = (c + 1) n/2 - c
      * 
-     * can we assume the n's dominate???? how big is c???
+     * o(n)
      * 
      */
     public RecurrenceRelations() {
