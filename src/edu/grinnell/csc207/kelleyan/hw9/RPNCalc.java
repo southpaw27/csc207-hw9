@@ -40,8 +40,41 @@ public class RPNCalc {
      * through the line, adding and popping from the stack as necessary and 
      * evaluating expressions as they appear.
      */
-    public static Double evaluate(String str) {
-	// STUB
+    public Double evaluate(String str) throws Exception {
+	int len = str.length();
+	// iterator through string
+	int i = 0;
+	Double temp1;
+	Double temp2;
+	while (i < len) {
+	    if (str.charAt(i) == ' ') {
+		i++;
+	    } else if (str.charAt(i) == '+') {
+		temp1 = this.RPNStack.pop();
+		temp2 = this.RPNStack.pop();
+		temp1 = temp1 + temp2;
+		this.RPNStack.push(temp1);
+	    } else if (str.charAt(i) == '-') {
+		temp1 = this.RPNStack.pop();
+		temp2 = this.RPNStack.pop();
+		temp1 = temp1 - temp2;
+		this.RPNStack.push(temp1);
+	    } else if (str.charAt(i) == '*') {
+		temp1 = this.RPNStack.pop();
+		temp2 = this.RPNStack.pop();
+		temp1 = temp1 * temp2;
+		this.RPNStack.push(temp1);
+	    } else if (str.charAt(i) == '/') {
+		temp1 = this.RPNStack.pop();
+		temp2 = this.RPNStack.pop();
+		temp1 = temp1 / temp2;
+		this.RPNStack.push(temp1);
+	    } else {
+		// STUB
+		// Need to add a loop that will read the number before it gets 
+		// to another ' '.
+	    }
+	}
 	return (double) 0;
     }
     
