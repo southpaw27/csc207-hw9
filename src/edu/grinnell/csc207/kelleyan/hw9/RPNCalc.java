@@ -40,6 +40,10 @@ public class RPNCalc {
      * through the line, adding and popping from the stack as necessary and 
      * evaluating expressions as they appear.
      */
+    public static Double evaluate(String str) {
+	// STUB
+	return (double) 0;
+    }
     
     /**
      * @param args
