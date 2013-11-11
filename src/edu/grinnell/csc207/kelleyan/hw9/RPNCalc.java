@@ -50,25 +50,13 @@ public class RPNCalc {
 	    if (str.charAt(i) == ' ') {
 		i++;
 	    } else if (str.charAt(i) == '+') {
-		temp1 = this.RPNStack.pop();
-		temp2 = this.RPNStack.pop();
-		temp1 = temp1 + temp2;
-		this.RPNStack.push(temp1);
+		add();
 	    } else if (str.charAt(i) == '-') {
-		temp1 = this.RPNStack.pop();
-		temp2 = this.RPNStack.pop();
-		temp1 = temp1 - temp2;
-		this.RPNStack.push(temp1);
+		subtract();
 	    } else if (str.charAt(i) == '*') {
-		temp1 = this.RPNStack.pop();
-		temp2 = this.RPNStack.pop();
-		temp1 = temp1 * temp2;
-		this.RPNStack.push(temp1);
+		multiply();
 	    } else if (str.charAt(i) == '/') {
-		temp1 = this.RPNStack.pop();
-		temp2 = this.RPNStack.pop();
-		temp1 = temp1 / temp2;
-		this.RPNStack.push(temp1);
+		divide();
 	    } else {
 		// STUB
 		// Need to add a loop that will read the number before it gets 
@@ -76,6 +64,34 @@ public class RPNCalc {
 	    }
 	}
 	return (double) 0;
+    }
+    
+    public void add() throws Exception {
+	Double temp1 = this.RPNStack.pop();
+	Double temp2 = this.RPNStack.pop();
+	temp1 = temp1 + temp2;
+	this.RPNStack.push(temp1);
+    }
+    
+    public void subtract() throws Exception {
+	Double temp1 = this.RPNStack.pop();
+	Double temp2 = this.RPNStack.pop();
+	temp1 = temp1 - temp2;
+	this.RPNStack.push(temp1);
+    }
+    
+    public void multiply() throws Exception {
+	Double temp1 = this.RPNStack.pop();
+	Double temp2 = this.RPNStack.pop();
+	temp1 = temp1 * temp2;
+	this.RPNStack.push(temp1);
+    }
+    
+    public void divide() throws Exception{
+	Double temp1 = this.RPNStack.pop();
+	Double temp2 = this.RPNStack.pop();
+	temp1 = temp1 / temp2;
+	this.RPNStack.push(temp1);
     }
     
     /**
