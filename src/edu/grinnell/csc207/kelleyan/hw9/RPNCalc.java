@@ -45,7 +45,6 @@ public class RPNCalc {
 	// iterator through string
 	int i = 0;
 	Double temp1;
-	Double temp2;
 	while (i < len) {
 	    if (str.charAt(i) == ' ') {
 		i++;
@@ -58,9 +57,13 @@ public class RPNCalc {
 	    } else if (str.charAt(i) == '/') {
 		divide();
 	    } else {
-		// STUB
-		// Need to add a loop that will read the number before it gets 
-		// to another ' '.
+		int index = i;
+		while (str.charAt(i) != ' ' && str.charAt(i + 1) != '\n') {
+		    i++;
+		} // while
+		String tempStr = str.substring(index, i);
+		temp1 = Double.valueOf(tempStr);
+		RPNStack.push(temp1);
 	    }
 	}
 	return (double) 0;
