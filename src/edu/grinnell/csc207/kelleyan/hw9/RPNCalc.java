@@ -31,6 +31,16 @@ public class RPNCalc {
     } // RPNCalc(int)
     
     
+    // +-------------------------+-----------------------------------------
+    // |     RPNCalc Methods     |
+    // +-------------------------+
+    
+    /**
+     * evaluate takes a string expression of an RPN calculator entry and parses
+     * through the line, adding and popping from the stack as necessary and 
+     * evaluating expressions as they appear.
+     */
+    
     /**
      * @param args
      */
