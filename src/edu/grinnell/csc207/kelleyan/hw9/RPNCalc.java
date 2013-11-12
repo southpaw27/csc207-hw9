@@ -86,7 +86,14 @@ public class RPNCalc {
 		while (i < len && str.charAt(i) != ' ' && str.charAt(i) != '\n') {
 		    i++;
 		} // while
-		RPNStack.push(Double.valueOf(str.substring(index, i)));
+
+		// if input is a number, put it on the stack
+		try {
+		    RPNStack.push(Double.valueOf(str.substring(index, i)));
+		} catch (NumberFormatException e) {
+		    // otherwise, warn user, ignore input, and continue
+		    pen.println("Invalid entry!");
+		} // try/catch
 	    } // if/else
 	    i++;
 	} // while
@@ -127,9 +134,7 @@ public class RPNCalc {
 		return;
 	    } // if
 	} // if
-	pen.println("Invalid entry!");
-	pen.println("Clearing stack...");
-	clear();
+	pen.println("Invalid entry! Insufficient numbers on the stack.");
     } // performOperation(int, char, PrintWriter)
 
     /**

@@ -32,7 +32,7 @@ public class RPNCalcInterface {
 
     public static void main(String[] args) throws Exception {
 	// Create a RPNCalc with a certain size of the stack
-	RPNCalc calc = new RPNCalc(3);
+	RPNCalc calc = new RPNCalc(30);
 	PrintWriter pen = new PrintWriter(System.out, true);
 	InputStreamReader istream = new InputStreamReader(System.in);
 	BufferedReader eyes = new BufferedReader(istream);
@@ -50,5 +50,5 @@ public class RPNCalcInterface {
 	} // while
 	pen.println("Quitting!");
     } // main(String[])4
-
+    
 } // RPNCalcInterface

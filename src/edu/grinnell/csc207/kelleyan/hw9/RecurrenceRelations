@@ -1,0 +1,152 @@
+Recurrence Relations
+by Mira Hall
+   Matt Dole
+   Andrew Kelley
+
+Recurrence Relation 0:
+f0(1) = 1
+f0(n) = n + f0(n/2)
+
+To find the recurrence relation here, we looked at the results of different 
+inputs. We used multiples of two as the inputs.
+f0(1) = 1
+f0(2) = 3
+f0(4) = 7
+f0(8) = 15
+An analysis of these numbers reveals the relation of 2*n - 1.
+This means that f0(n) is O(2n) in magnitude.
+
+Recurrence Relation 1:
+f1(1) = 1
+f1(n) = n + f1(n - 1)
+
+To find the recurrence relation here, we looked at the results of different 
+inputs. We used multiples of two as the inputs.
+f0(1) = 1
+f0(2) = 3
+f0(4) = 10
+f0(8) = 36
+An analysis of these numbers reveals the relation of n(n/2) + (n/2).
+This means that f1(n) is O((n^2)/2 + (n/2)) in magnitude.
+
+Recurrence Relation 2:
+f2(1) = 1
+f2(n) = c + f2(n-1)
+To find the recurrence relation here, we looked at the results of different 
+inputs and different constant c.
+c = 0
+f(n) = 1
+
+c = 1
+f2(1) = 1
+f2(2) = 2
+f2(3) = 3
+f2(4) = 4
+f2(5) = 5
+f2(6) = 6
+f2(7) = 7
+f2(8) = 8
+
+c = 2
+f2(1) =  1
+f2(2) =  3
+f2(3) =  5
+f2(4) =  7
+f2(5) =  9
+f2(6) = 11
+f2(7) = 13
+f2(8) = 15
+An analysis of these numbers reveals the relation of (n-1)c + 1.
+This means that f2(n) is O(c*n) in magnitude.
+
+Recurrence Relation 3:
+f3(1) = 1
+f3(n) = c + f3(n/2)
+To find the recurrence relation here, we expanded f3(n) until a pattern was apparent
+and then expressed it in terms of n.
+
+f3(1) = 1
+f3(n) = c + f3(n/2) = c + c + f3(n/4) = 2c + f3(n/4)
+f3(n) = 2c + f3(n/2) = 2c + c + f3(n/8) = 3c + f3(n/8)
+f3(n) = 3c + f3(n/8) = 3c + c + f3(n/16) = 4c + f3(n/16)
+
+f3(n) = kc + f3(n/2^k)
+2^k = n 
+
+f3 = kc + f3(n/n) = kc + f3(1) = kc + 1
+
+k = log2n
+
+f3 = log2n + 1
+
+O(log2(n))
+
+
+Recurrence Relation 4:
+f4(1) = 1
+f4(n) = n + 2*f4(n/2)
+To find the recurrence relation here, we expanded f4(n) until a pattern was 
+apparent and then expressed it in terms of n.
+
+f4(n) = n + 2(n + f4(n/4)) => f4(n) = 3n + 4*f4(n/4)
+f4(n) = 3n + 4(n + f4(n/8)) => f4(n) = 7n + 8*f4(n/8)
+
+2^k = n
+
+f4(n) = (2^k - 1)n + (2^k)f4(n/2^k)
+f4(n) = (n - 1)n + n*f4(n/n)
+f4(n) = n^2 - n + n * 1
+f4(n) = n^2
+
+Our analysis reveals that f4(n) = n^2 or is O(n^2).
+
+
+Recurrence Relation 5:
+f5(1) = 1
+f5(n) = c + 2(f5(n/2))
+To find the recurrence relation here, we expanded f5(n) until a pattern was 
+apparent and then expressed it in terms of n.
+
+f5(n) = c + 2(f5(n/2))
+f5(n) = c + 2(c + 2(f5(n/4))) = 3c + 4(f5(n/8))
+f5(n) = 3c + 4(c + 2(f5(n/16))) = 7c + 8(f5(n/32))
+
+f5(n) = (2^k - 1)c + 2^k * ( f5(n/(2^k+1)))
+
+if n = 2^k+1
+then
+f5(n) = (2^k - 1)c + 2^k *(f5(n/n)) = (2^k - 1)c + 2^k(f5(1))
+f5(n) = (2^k - 1)c + 2^k
+
+furthermore, n * 2^-1 = 2^k+1 * 2^-1
+n/2 = 2^k
+
+so
+f5(n) = (n/2 - 1) c + n/2
+f5(n) = c * n/2 - c + n/2
+f5(n) = (c + 1) n/2 - c
+
+Our analysis reveals that f5(n) = (c + 1)*(n/2) - c. This is O(n/2).
+
+ 
+
+Recurrence Relation 6:
+f6(1) = 1
+f6(n) = c + 2 * f6(n-1)
+To find the recurrence relation here, we expanded f6(n) until a pattern was
+apparent and then expressed it in terms of n.
+
+f6(2) = c + 2*(1) = c + 2
+f6(3) = c + 2*(c + 2) = 3c + 4
+f6(4) = c + 2*(3c + 4) = 7c + 8
+f6(5) = c + 2(7c + 8) = 15c + 16
+
+f6(n) = 2^n + c(2^n - 1)
+
+Our analysis reveals that f6(n) = 2^n + c(2^n - 1). This is O(2^(n+1)).
+
+
+     
+    
+    
+    
