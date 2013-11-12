@@ -7,11 +7,10 @@ import java.io.InputStreamReader;
 public class RPNCalcInterface {
 
     public static void printOptions(PrintWriter pen) {
-	pen.println("options: ");
+	pen.println("Options: ");
 	pen.println("p - print the top value on the stack");
 	pen.println("s - print the whole stack");
 	pen.println("c - clear the stack");
-	pen.println("h - get help/options menu (this menu)");
 	pen.println("q - quit the calculator program");
     }
 
@@ -33,5 +32,6 @@ public class RPNCalcInterface {
 	    cont = calc.evaluate(line, pen);
 	}// while
 	pen.println("Quitting!");
-    } // main(String[])
+    } // main(String[])4
+    
 } // RPNCalcInterface

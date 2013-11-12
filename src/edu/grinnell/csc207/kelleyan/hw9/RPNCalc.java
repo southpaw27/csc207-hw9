@@ -47,31 +47,38 @@ public class RPNCalc {
 	// iterator through string
 	int i = 0;
 	while (i < len && RPNStack.size >= 0) {
-	    if (str.charAt(i) == ' ') {
-		i++;
-	    } else if (str.charAt(i) == 'p') {
-		pen.println(RPNStack.peek());
-	    } else if (str.charAt(i) == 's') {
-		ArrayBasedStackIterator<Double> it = new ArrayBasedStackIterator<Double>(RPNStack);
-		while(it.hasNext()) {
-		    pen.println(it.next());
-		}
-	    } else if (str.charAt(i) == 'c') { //needs fixing
-		for (int j = 0; j < len; j++) {
+	    char current = str.charAt(i);
+	    if (current == 'p') {
+		if (RPNStack.isEmpty()) {
+		    pen.println("Nothing in memory");
+		} else {
+		    pen.println(RPNStack.peek());
+		} // else
+	    } else if (current == 's') {
+		if (RPNStack.isEmpty()) {
+		    pen.println("Nothing in memory");
+		} else {
+		    ArrayBasedStackIterator<Double> it = new ArrayBasedStackIterator<Double>(
+			    RPNStack);
+		    while (it.hasNext()) {
+			pen.println(it.next());
+		    } // while
+		}// else
+	    } else if (current == 'c') {
+		while (!this.RPNStack.isEmpty()) {
 		    RPNStack.pop();
-		} // for
-		RPNStack.size = 0;
-	    } else if (str.charAt(i) == 'q') {
+		} // while
+	    } else if (current == 'q') {
 		return false;
-	    } else if (str.charAt(i) == '+') {
+	    } else if (current == '+') {
 		add();
-	    } else if (str.charAt(i) == '-') {
+	    } else if (current == '-') {
 		subtract();
-	    } else if (str.charAt(i) == '*') {
+	    } else if (current == '*') {
 		multiply();
-	    } else if (str.charAt(i) == '/') {
+	    } else if (current == '/') {
 		divide();
-	    } else {
+	    } else if (current != ' '){
 		int index = i;
 		while (i < len && str.charAt(i) != ' ' && str.charAt(i) != '\n') {
 		    i++;
@@ -81,29 +88,22 @@ public class RPNCalc {
 	    i++;
 	} // while
 	return true;
-    }
+    }// evaluate
 
     public void add() throws Exception {
 	this.RPNStack.push(this.RPNStack.pop() + this.RPNStack.pop());
-    }
+    }// add
 
     public void subtract() throws Exception {
-	this.RPNStack.push(-this.RPNStack.pop() + this.RPNStack.pop());
-    }
+	this.RPNStack.push(-1 * this.RPNStack.pop() + this.RPNStack.pop());
+    }// subtract
 
     public void multiply() throws Exception {
 	this.RPNStack.push(this.RPNStack.pop() * this.RPNStack.pop());
-    }
+    }// multiply
 
     public void divide() throws Exception {
 	this.RPNStack.push((1 / this.RPNStack.pop()) * this.RPNStack.pop());
-    }
+    }// divide
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-	// TODO Auto-generated method stub
-    }
-
-}
+} // RPNCalc
