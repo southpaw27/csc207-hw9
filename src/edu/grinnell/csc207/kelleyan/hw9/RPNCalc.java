@@ -23,7 +23,7 @@ public class RPNCalc {
      * Size of the ArrayBasedStack field
      */
     int size;
-    
+
     /**
      * A string used to compare input with possible operands
      */
@@ -61,20 +61,20 @@ public class RPNCalc {
 	    char current = str.charAt(i);
 	    if (current == 'p') {
 		if (RPNStack.isEmpty()) {
-		    pen.println("Nothing in memory");
+		    pen.println("Nothing on the stack!");
 		} else {
 		    pen.println(RPNStack.peek());
-		}// else
+		} // else
 	    } else if (current == 's') {
 		if (RPNStack.isEmpty()) {
-		    pen.println("Nothing in memory");
+		    pen.println("Nothing on the stack!");
 		} else {
 		    ArrayBasedStackIterator<Double> it = new ArrayBasedStackIterator<Double>(
 			    RPNStack);
 		    while (it.hasNext()) {
 			pen.println(it.next());
-		    }// while
-		}// else
+		    } // while
+		} // else
 	    } else if (current == 'c') {
 		clear();
 	    } else if (current == 'q') {
@@ -85,13 +85,13 @@ public class RPNCalc {
 		int index = i;
 		while (i < len && str.charAt(i) != ' ' && str.charAt(i) != '\n') {
 		    i++;
-		}// while
+		} // while
 		RPNStack.push(Double.valueOf(str.substring(index, i)));
-	    }// if/else
+	    } // if/else
 	    i++;
-	}// while
+	} // while
 	return true;
-    }// evaluate
+    } // evaluate(str, PrintWriter)
 
     public void preformOperation(int i, char c, PrintWriter pen)
 	    throws Exception {
@@ -116,44 +116,45 @@ public class RPNCalc {
 		    avg();
 		}
 		return;
-	    }// if
-	}// if
+	    } // if
+	} // if
 	pen.println("Invalid entry!");
 	pen.println("Clearing stack...");
 	clear();
-    }// nextChecker
+    } // performOperation(int, char, PrintWriter)
 
     public void add() throws Exception {
 	this.RPNStack.push(this.RPNStack.pop() + this.RPNStack.pop());
-    }// add
+    } // add()
 
     public void subtract() throws Exception {
 	this.RPNStack.push(-1 * this.RPNStack.pop() + this.RPNStack.pop());
-    }// subtract
+    } // subtract()
 
     public void multiply() throws Exception {
 	this.RPNStack.push(this.RPNStack.pop() * this.RPNStack.pop());
-    }// multiply
+    } // multiply()
 
     public void divide() throws Exception {
 	this.RPNStack.push((1 / this.RPNStack.pop()) * this.RPNStack.pop());
-    }// divide
+    } // divide()
 
     public void min() throws Exception {
 	this.RPNStack.push(Math.min(this.RPNStack.pop(), this.RPNStack.pop()));
-    }// min
+    } // min()
 
     public void max() throws Exception {
 	this.RPNStack.push(Math.max(this.RPNStack.pop(), this.RPNStack.pop()));
-    }// min
-    
+    } // min()
+
     public void avg() throws Exception {
-	this.RPNStack.push((this.RPNStack.pop() / 2) + (this.RPNStack.pop() / 2));
-    }
+	this.RPNStack.push((this.RPNStack.pop() / 2)
+		+ (this.RPNStack.pop() / 2));
+    } // avg()
 
     public void clear() throws Exception {
 	while (!this.RPNStack.isEmpty()) {
 	    RPNStack.pop();
-	}// while
-    }// void
+	} // while
+    } // clear()
 } // RPNCalc
