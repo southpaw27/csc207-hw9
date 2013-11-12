@@ -4,6 +4,12 @@ import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/**
+ * @author Mira Hall
+ * @author Matt Dole
+ * @author Andrew Kelley
+ */
+
 public class RPNCalcInterface {
 
     public static void printOptions(PrintWriter pen) {

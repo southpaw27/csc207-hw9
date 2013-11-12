@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
  * A simple array-based stack.
  *
  * @author Samuel A. Rebelsky
- * @author Andrew Kelleu
+ * @author Andrew Kelley
  * @author Mira Hall
  * @author Matt Dole
  * 

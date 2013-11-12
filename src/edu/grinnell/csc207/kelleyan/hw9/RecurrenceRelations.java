@@ -1,5 +1,11 @@
 package edu.grinnell.csc207.kelleyan.hw9;
 
+/**
+ * @author Mira Hall
+ * @author Matt Dole
+ * @author Andrew Kelley
+ */
+
 public class RecurrenceRelations {
 
     /*
