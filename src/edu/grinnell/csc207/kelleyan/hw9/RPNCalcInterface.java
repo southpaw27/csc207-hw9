@@ -12,6 +12,13 @@ import java.io.InputStreamReader;
 
 public class RPNCalcInterface {
 
+    /**
+     * printOptions prints the options available to the user of the RPN
+     * calculator
+     * 
+     * @param pen
+     * @pre pen is a PenWriter
+     */
     public static void printOptions(PrintWriter pen) {
 	pen.println("Options: ");
 	pen.println("p - print the top value on the stack");
@@ -24,24 +31,24 @@ public class RPNCalcInterface {
     }
 
     public static void main(String[] args) throws Exception {
-
-	RPNCalc calc = new RPNCalc(60);
-
+	// Create a RPNCalc with a certain size of the stack
+	RPNCalc calc = new RPNCalc(3);
 	PrintWriter pen = new PrintWriter(System.out, true);
 	InputStreamReader istream = new InputStreamReader(System.in);
 	BufferedReader eyes = new BufferedReader(istream);
-	// welcome
+	// Welcome
 	pen.println("Welcome to the RPN calculator!");
-	// options to choose from
+	// Options to choose from
 	printOptions(pen);
 	boolean cont = true;
 	while (cont) {
 	    pen.println("Please type your input and hit enter");
-
+	    // Read input into a String
 	    String line = eyes.readLine();
+	    // Calculate whether or not to continue loop
 	    cont = calc.evaluate(line, pen);
 	} // while
 	pen.println("Quitting!");
     } // main(String[])4
-    
+
 } // RPNCalcInterface

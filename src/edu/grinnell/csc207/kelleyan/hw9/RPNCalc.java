@@ -55,7 +55,7 @@ public class RPNCalc {
      */
     public boolean evaluate(String str, PrintWriter pen) throws Exception {
 	int len = str.length();
-	// iterator through string
+	// Iterator to iterate through string
 	int i = 0;
 	while (i < len && RPNStack.size >= 0) {
 	    char current = str.charAt(i);
@@ -80,7 +80,7 @@ public class RPNCalc {
 	    } else if (current == 'q') {
 		return false;
 	    } else if (checker.indexOf(current) != -1) {
-		preformOperation(i, current, pen);
+		performOperation(i, current, pen);
 	    } else if (current != ' ') {
 		int index = i;
 		while (i < len && str.charAt(i) != ' ' && str.charAt(i) != '\n') {
@@ -93,7 +93,16 @@ public class RPNCalc {
 	return true;
     } // evaluate(str, PrintWriter)
 
-    public void preformOperation(int i, char c, PrintWriter pen)
+    /**
+     * performOperation performs the given operation on the stack
+     * 
+     * @param i
+     * @param c
+     * @param pen
+     * @pre i is 0 <= int < size, c is a character, pen is a PrintWriter
+     * @throws Exception
+     */
+    public void performOperation(int i, char c, PrintWriter pen)
 	    throws Exception {
 	ArrayBasedStackIterator<Double> it = new ArrayBasedStackIterator<Double>(
 		RPNStack);
@@ -123,35 +132,82 @@ public class RPNCalc {
 	clear();
     } // performOperation(int, char, PrintWriter)
 
+    /**
+     * add pops the top two items off the stack and adds them, pushing the
+     * result back onto the stack
+     * 
+     * @throws Exception
+     */
     public void add() throws Exception {
 	this.RPNStack.push(this.RPNStack.pop() + this.RPNStack.pop());
     } // add()
 
+    /**
+     * subtract pops the top two items off the stack and subtracts them, pushing
+     * the result back onto the stack
+     * 
+     * @throws Exception
+     */
     public void subtract() throws Exception {
 	this.RPNStack.push(-1 * this.RPNStack.pop() + this.RPNStack.pop());
     } // subtract()
 
+    /**
+     * multiply pops the top two items off the stack and multiplies them,
+     * pushing the result back onto the stack
+     * 
+     * @throws Exception
+     */
     public void multiply() throws Exception {
 	this.RPNStack.push(this.RPNStack.pop() * this.RPNStack.pop());
     } // multiply()
 
+    /**
+     * divide pops the top two items off the stack and divides the second by the
+     * first, pushing the result back onto the stack
+     * 
+     * @throws Exception
+     */
     public void divide() throws Exception {
 	this.RPNStack.push((1 / this.RPNStack.pop()) * this.RPNStack.pop());
     } // divide()
 
+    /**
+     * min pops the top two items off the stack and finds the minimum of the
+     * two, pushing the result back onto the stack
+     * 
+     * @throws Exception
+     */
     public void min() throws Exception {
 	this.RPNStack.push(Math.min(this.RPNStack.pop(), this.RPNStack.pop()));
     } // min()
 
+    /**
+     * max pops the top two items off the stack and finds the maximum of the
+     * two, pushing the result back onto the stack
+     * 
+     * @throws Exception
+     */
     public void max() throws Exception {
 	this.RPNStack.push(Math.max(this.RPNStack.pop(), this.RPNStack.pop()));
     } // min()
 
+    /**
+     * average pops the top two items off the stack and finds their average,
+     * pushing the result back onto the stack
+     * 
+     * @throws Exception
+     */
     public void avg() throws Exception {
 	this.RPNStack.push((this.RPNStack.pop() / 2)
 		+ (this.RPNStack.pop() / 2));
     } // avg()
 
+    /**
+     * clear clears the stack of all values
+     * 
+     * @throws Exception
+     */
     public void clear() throws Exception {
 	while (!this.RPNStack.isEmpty()) {
 	    RPNStack.pop();
