@@ -29,9 +29,9 @@ public class RPNCalcInterface {
 	BufferedReader eyes = new BufferedReader(istream);
 
 	pen.println("Welcome to the RPN calculator!");
+	printOptions(pen);
 	boolean cont = true;
 	while (cont) {
-	    printOptions(pen);
 	    pen.println("Please type your input and hit enter");
 
 	    String line = eyes.readLine();
