@@ -16,8 +16,8 @@ public class RPNCalcInterface {
      * printOptions prints the options available to the user of the RPN
      * calculator
      * 
-     * @param pen
-     * @pre pen is a PenWriter
+     * @param PrintWriter
+     *            pen
      */
     public static void printOptions(PrintWriter pen) {
 	pen.println("Options: ");
@@ -28,27 +28,28 @@ public class RPNCalcInterface {
 	pen.println("x - find the max of top two values on the stack");
 	pen.println("a - find the average of top two values on the stack");
 	pen.println("q - quit the calculator program");
-    }
+    } // printOptions
 
     public static void main(String[] args) throws Exception {
-	// Create a RPNCalc with a certain size of the stack
+	// Create a RPNCalc with a size of 30
 	RPNCalc calc = new RPNCalc(30);
 	PrintWriter pen = new PrintWriter(System.out, true);
 	InputStreamReader istream = new InputStreamReader(System.in);
 	BufferedReader eyes = new BufferedReader(istream);
 	// Welcome
 	pen.println("Welcome to the RPN calculator!");
+	pen.println("Please type your input. Hit enter when you are");
+	pen.println("ready to add the input to the stack.");
 	// Options to choose from
 	printOptions(pen);
 	boolean cont = true;
 	while (cont) {
-	    pen.println("Please type your input and hit enter");
 	    // Read input into a String
-	    String line = eyes.readLine();
-	    // Calculate whether or not to continue loop
-	    cont = calc.evaluate(line, pen);
+	    // Perform calculations and decide whether or not to continue the
+	    // loop (if the input is 'q', evaluate returns false)
+	    cont = calc.evaluate(eyes.readLine(), pen);
 	} // while
 	pen.println("Quitting!");
-    } // main(String[])4
-    
+    } // main
+
 } // RPNCalcInterface

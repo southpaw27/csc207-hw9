@@ -22,10 +22,10 @@ f1(n) = n + f1(n - 1)
 
 To find the recurrence relation here, we looked at the results of different 
 inputs. We used multiples of two as the inputs.
-f0(1) = 1
-f0(2) = 3
-f0(4) = 10
-f0(8) = 36
+f1(1) = 1
+f1(2) = 3
+f1(4) = 10
+f1(8) = 36
 An analysis of these numbers reveals the relation of n(n/2) + (n/2).
 This means that f1(n) is O((n^2)/2 + (n/2)) in magnitude.
 
@@ -79,7 +79,7 @@ k = log2n
 
 f3 = log2n + 1
 
-O(log2(n))
+So f3 is O(log2(n)) in magnitude
 
 
 Recurrence Relation 4:
